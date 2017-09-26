@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+    <style>
+        .music {
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          overflow: hidden;
+          position: relative;
+          margin: 0.1rem auto; }
+          .music i {
+            position: absolute;
+            top: 44%;
+            left: 44%;
+            color: #fff;
+            font-size: 0.18rem; }
+          .music img {
+            width: 100%;
+            height: 100%; }
+
+        @keyframes mydh {
+          0% {
+            transform: rotate(1800deg); 
+            } 
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="section">
+            <div class="music">
+                <img src="images/k.jpg" alt="">
+                <audio src="music/one.mp3" id="playMusic"></audio>
+                <i class="fa fa-play" id="btn"></i>
+            </div>
+    </section>
+    <script src="js/zepto.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/event.js"></script>
+    <script>
+        var timer = null;
+        var count = 0;
+        var playMusic = document.getElementById('playMusic');
+        $('#btn').on('click',function(){
+            $(this).toggleClass('fa-pause');
+            if($(this).hasClass('fa-pause')){
+                playMusic.play();
+                auto();
+            }else{
+                playMusic.pause();
+                clearInterval(timer);
+            }
+        });
+
+        function auto(){
+            timer = setInterval(function(){
+                count++;
+                $('.music img').css("transform","rotate("+count+"deg)")
+
+            },100)
+        }
+    </script>
+</body>
+</html>
